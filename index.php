@@ -29,6 +29,7 @@
             </div>
             <div class="links">
                 <span>Dados do Usuário aqui...</span>
+                <!--<?php echo $_SESSION['usuario'] ?>-->
                 <div class="nav-item">
                     <a href="#">
                         <img src="assets/img/usuario_icon.png">
@@ -49,45 +50,35 @@
         </div>
     </header>
 
-    <div class="corpo">
+    <section class="body">
         <div class="options">
-            <div class="ref-mes"></div>
+            <div class="ref-month"></div>
             <div class="cont-form">
                 <div class="select-control">
-                    <select name="select" id="mes" required name="month">
+                    <select name="select" required id="month" name="month">
                         <option value="00" disabled selected>Filtrar por Mês</option>
-                        <option value="janeiro">Janeiro</option>
-                        <option value="fevereiro">Fevereiro</option>
-                        <option value="marco">Março</option>
-                        <option value="abril">Abril</option>
-                        <option value="maio">Maio</option>
-                        <option value="junho">Junho</option>
-                        <option value="julho">Julho</option>
-                        <option value="agosto">Agosto</option>
-                        <option value="setembro">Setembro</option>
-                        <option value="outubro">Outubro</option>
-                        <option value="novembro">Novembro</option>
-                        <option value="dezembro">Dezembro</option>
                     </select>
                 </div>
             </div>
-            <div class="busca">
+            <div class="search">
                 <i class="bi bi-search" aria-hidden="true"></i>
-                <input type="text" placeholder="Procure pelo Registro" autocomplete="off" class="busca-input">
+                <input type="text" placeholder="Procure pela Descrição" autocomplete="off" class="search-input">
             </div>
-            <button class="btn-open" style="font-weight: bold">+ Novo Lançamento</button>
+            <button class="btn-open">+ Novo Lançamento</button>
         </div>
         
         <div class="modal-container">
-            <div class="modal-corpo">
+            <div class="modal-body">
                 <div class="header-modal">
                     <h2>Detalhe o Registro</h2>
                     <span class="close-modal">x</span>
                 </div>
+
                 <hr>
+
                 <div class="modal-content">
                     <form action="" method="post" id="formReg">
-                        <div class="form-corpo">                            
+                        <div class="form-body">                            
                             <label class="form-label" for="dateInput">Data do Lançamento</label>
                             <input type="date" name="data" id="dataInput" required>
                             <small class="msgErro"></small>
@@ -363,7 +354,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
     <script src="assets/js/index.js"></script>
     

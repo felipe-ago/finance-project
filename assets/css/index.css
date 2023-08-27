@@ -13,10 +13,9 @@ body{
 }
 
 /*HEADER*/
-
 .logo img{
     width: 45px;
-    margin: 5px;
+    margin: 10px;
 }
 
 .logo a{
@@ -101,7 +100,7 @@ nav{
 
 /*BODY*/
 
-.corpo{
+.body{
     height: 100%;
     background-color: rgb(24, 26, 32);
     flex-direction: column;
@@ -120,7 +119,7 @@ nav{
     font-weight: 600;
 }
 
-.ref-mes{
+.ref-month{
     color: #fff;
 }
 
@@ -136,17 +135,17 @@ nav{
     appearance: none;
 }
 
-.busca{
+.search{
     position: relative;
 }
 
-.busca i{
+.search i{
     position: absolute;
     left: 90%;
     top: 15px;
 }
 
-.busca input[type=text]{
+.search input[type=text]{
     width: 300px;
     box-sizing: border-box;
     border: 1px solid rgb(167, 166, 166);
@@ -431,7 +430,7 @@ nav{
     color: rgb(12, 12, 12);
     cursor: pointer;
     font-size: 16px;
-    font-weight: 400;
+    font-weight: bold;
     outline: none;
     outline: 0;
     padding: 10px 25px;
@@ -465,22 +464,24 @@ hr{
     
 }
 
-.modal-corpo{
+.modal-body{
     display: flex;
     flex-direction: column;
-    padding: 20px 20px 0 20px;
-    background-color: #fff;
+    padding: 20px;
+    color: #fff;
+    background-color: rgb(48, 51, 59);
     border-radius: 10px;
-    width: 30%;
+    width: 50%;
     height: auto;
     justify-content: space-between;
-    overflow: scroll;
 }
 
 .header-modal{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    text-transform: uppercase;
+    font-weight: bold;
     padding: 10px;
 }
 
@@ -499,6 +500,7 @@ hr{
     align-items: center;
     flex-direction: column;
     height: 100%;
+    overflow: scroll;
 }
 
 #formReg{
@@ -517,7 +519,7 @@ label{
     padding: 5px;
 }
 
-.form-corpo{
+.form-body{
     width: 100%;
 }
 
@@ -536,8 +538,8 @@ label{
     appearance: none;
 }
 
-.form-corpo select{
-    font-size: 16px;
+.form-body select{
+    font-size: 1rem;
     font-weight: normal;
     width: 100%;
     padding: 15px;
@@ -547,7 +549,8 @@ label{
     appearance: none;
 }
 
-.form-corpo select:active, .form-corpo select:focus{
+.form-corpo select:active,
+.form-corpo select:focus{
     outline: none;
     box-shadow: none;
 }
@@ -697,7 +700,7 @@ label{
     display: flex;
 }
 
-.active .modal-corpo{
+.active .modal-body{
     animation: modal .4s;
 }
 
