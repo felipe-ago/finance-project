@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/index.css">
-    <link rel="stylesheet" href="assets/css/index-respon.css">
     <link rel="shortcut icon" href="assets/img/Logo.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <title>Fluxo Grana</title>
@@ -77,7 +76,7 @@
                 <hr>
 
                 <div class="modal-content">
-                    <form action="" method="post" id="formReg">
+                    <form action="" method="post" id="form-reg">
                         <div class="form-body">                            
                             <label class="form-label" for="dateInput">Data do Lançamento</label>
                             <input type="date" name="data" id="dataInput" required>
@@ -107,66 +106,77 @@
 
                             <p class="space"></p>
 
-                            <div class="form-corpo-selects">
-                                <label class="form-label" for="desc">Descrição Breve do Lançamento</label>
-                                <input type="text" name="desc" placeholder="Um título para identificar o registro" id="desc" required>
+                            <label class="form-label" for="desc">Descrição Breve do Lançamento</label>
+                            <input type="text" name="desc" placeholder="Um título para identificar o registro" id="desc" required>
+
+                            <p class="space"></p>
+
+                            <div class="form-body-selects">
+                                <label class="form-label" for="longDesc">Descrição Longa do Lançamento</label>
+                                <input type="text" name="desc-long" placeholder="Descrição detelhada (Opcional)" id="long-desc">
                             </div>
 
                             <p class="space"></p>
 
-                            <label class="form-label" for="longDesc">Descrição Longa do Lançamento</label>
-                            <input type="text" name="desc-long" placeholder="Descrição detelhada (Opcional)" id="long-desc">
+                            <div class="form-body-selects">
+                                <label class="form-label" for="valor">Valor</label>
+                                <input type="text" id="valor" name="valor" placeholder="Digite um valor R$" max="9" required>
+                            </div>
 
                             <p class="space"></p>
 
-                            <label class="form-label" for="valor">Valor</label>
-                            <input type="text" id="valor" name="valor" placeholder="Digite um valor R$" max="9" required>
-
-                            <p class="space"></p>
-
-                            <div class="sucesso-registro">
-                                <div class="sucesso-registro-content">
-                                    <p class="popup">Registro adicionado</p>
+                            <div class="popup-success">
+                                <div class="popup-success-content">
+                                    <p class="popup">Registro adicionado com sucesso!</p>
                                 </div>
                             </div>
+
                         </div>
                     </form>
                 </div>
+
                 <hr>
+                
                 <div class="btns">
-                    <button id="button-close" class="close-modal">Cancelar</button>
-                    <button id="button-ok" form="formReg">Salvar</button>
+                    <button class="close-modal" id="button-close" >Cancelar</button>
+                    <button id="button-ok" form="form-reg">Salvar</button>
                 </div>
+
             </div>
+
         </div>
-        <div class="valores">
-            <div class="valores-cards" style="color:red; font-weight: bold;">
-                <p class="header-valores" style="color:red; font-weight: bold;">Despesas</p>
-                <div class="valores-corpo">
+
+        <div class="resume">
+            <div class="resume-cards" style="color:red; font-weight: bold;">
+                <p class="header-resume" style="color:red; font-weight: bold;">Despesas</p>
+                <div class="resume-body">
                     <i class="bi bi-box-arrow-right"></i>
                     <span>&nbsp;R$</span>
-                    <p class="despesas">270,50</p>
+                    <p class="expenses">0,00</p>
                 </div>
             </div>
-            <div class="valores-cards" style="color:green; font-weight: bold;">
-                <p class="header-valores" style="color:green; font-weight: bold;">Lucro</p>
-                <div class="valores-corpo">
+            
+            <div class="resume-cards" style="color:green; font-weight: bold;">
+                <p class="header-resume" style="color:green; font-weight: bold;">Lucro</p>
+                <div class="resume-body">
                     <i class="bi bi-coin"></i>
                     <span>&nbsp;R$</span>
-                    <p class="renda">2150,00</p>
+                    <p class="income">0,00</p>
                 </div>
             </div>
-            <div class="valores-cards" style="font-weight: bold;">
-                <p class="header-valores" style="font-weight: bold;">Balanço</p>
-                <div class="valores-corpo">
+
+            <div class="resume-cards">
+                <p class="header-resume">Balanço</p>
+                <div class="resume-body">
                     <i class="bi bi-bar-chart-line-fill"></i>
                     <span>&nbsp;R$</span>
-                    <p class="lucro">1879,50</p>
+                    <p class="profit">0,00</p>
                 </div>
             </div>
         </div>
-        <div class="tabela" style="overflow-x:auto;">
-            <table class="tabela-registros">
+
+        <div class="table" style="overflow-x:auto;">
+            <table class="table-reg">
                 <thead>
                     <tr>
                         <th>DATA DO LANÇAMENTO</th>
@@ -175,63 +185,28 @@
                         <th>DESCRIÇÃO</th>
                         <th>VALOR DE LANÇAMENTO</th>
                     </tr>
-                    <tr>
-                        <th>03/08/2023</th>
-                        <th>Despesa</th>
-                        <th>Previsto</th>
-                        <th>Internet</th>
-                        <th>R$ 120,00</th>
-                    </tr>
-                    <tr>
-                        <th>03/08/2023</th>
-                        <th>Despesa</th>
-                        <th>Previsto</th>
-                        <th>Telefone</th>
-                        <th>R$ 50,00</th>
-                    </tr>
-                    <tr>
-                        <th>05/08/2023</th>
-                        <th>Renda</th>
-                        <th>Previsto</th>
-                        <th>Salário</th>
-                        <th>R$ 2000,00</th>
-                    </tr>
-                    <tr>
-                        <th>04/08/2023</th>
-                        <th>Despesa</th>
-                        <th>Extra</th>
-                        <th>Supermercado</th>
-                        <th>R$ 77,00</th>
-                    </tr>
-                    <tr>
-                        <th>10/08/2023</th>
-                        <th>Renda</th>
-                        <th>Extra</th>
-                        <th>Manutenção em Computador</th>
-                        <th>R$ 150,00</th>
-                    </tr>
-                    <tr>
-                        <th>09/08/2023</th>
-                        <th>Despesa</th>
-                        <th>Extra</th>
-                        <th>Lanche</th>
-                        <th>R$ 23,50</th>
-                    </tr>
                 </thead>
+
                 <tbody class="table-info" id="table-corpo">
-                    <button id="btn-detalhe" class="btn-mais" style="font-weight: bold">Ver Mais Informações</button>
+                    <?php 
+                        include_once('assts/php/crud_php/read.php');
+                    ?>
+                    <button class="btn-mais" id="btn-detalhe">
+                        Relatório
+                    </button>
                 </tbody>
-                <div id="ler-modal" class="ler-modal modal-icones">
-                    <div class="modal-content-ler">
+
+                <div class="modal-read modal-icones" id="modal-read">
+                    <div class="modal-content-read">
                         <div class="header-modal-table">
                             <h2>Detalhes dos Lançamentos</h2>
-                            <span class="close-modal-ler">&times;</span>
+                            <span class="close-modal-read">&times;</span>
                         </div>
-                        <div class="modal-ler-corpo">
+                        <div class="modal-read-body">
                             <p class="long-description"></p>
                         </div>
-                        <div class="modal-ler-footer">
-                            <button class="btn-cancel close-modal-ler">OK</button>
+                        <div class="modal-read-footer">
+                            <button class="btn-cancel close-modal-read">OK</button>
                         </div>
                     </div> 
                 </div>

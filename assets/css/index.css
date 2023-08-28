@@ -156,7 +156,7 @@ nav{
     transition: width 0.5s ease-out;
 }
 
-.valores{
+.resume{
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -165,7 +165,7 @@ nav{
     width: 90%;
 }
 
-.valores-cards{
+.resume-cards{
     width: 25%;
     height: 70%;
     background: rgb(48, 51, 59);
@@ -175,38 +175,40 @@ nav{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    color: #fff;
+    color:white;
+    font-weight: bold;
     position: relative;
 }
 
-.header-valores{
+.header-resume{
     font-size: 30px;
-    color: #b6afaf;
+    color:white;
+    font-weight: bold;
 }
 
-.valores-corpo{
+.resume-body{
     display: flex;
     align-items: center;
 }
 
-.valores-corpo span, p{
+.resume-body span, p{
     padding: 4px;
     font-size: 50px;
 }
 
-.valores-corpo i{
+.resume-body i{
     font-size: 50px;
     left: 10px;
 }
 
-.tabela{
+.table{
     width: 90%;
     padding: 5px;
     margin-top: 5px;
     max-height: 45%;
 }
 
-.tabela-registros{
+.table-reg{
     width: 100%;
 }
 
@@ -224,20 +226,23 @@ nav{
     cursor: pointer;
 }
 
-.tabela-registros thead tr, .tabela-registros thead th{
+.table-reg thead tr,
+.table-reg thead th{
     border-top: 0;
     color: #fff;
     padding: 10px 0;
 }
 
-.tabela-registros tbody th, .tabela-registros tbody td{
+.table-reg tbody th,
+.table-reg tbody td{
     color: #b6afaf;
     font-weight: 400;
     font-weight: 300;
     text-align: center;
 }
 
-.tabela-registros tbody tr th, .tabela-registros tbody tr td{
+.table-reg tbody tr th,
+.table-reg tbody tr td{
     background: rgb(69, 70, 73);
     border: 0;
     transition: 0.3s all ease;
@@ -245,10 +250,8 @@ nav{
     width: 5%;
 }
 
-.tabela-registros tbody tr.active th,
-.tabela-registros tbody tr.active td,
-.tabela-registros tbody tr:hover th,
-.tabela-registros tbody tr.hover td{
+.table-reg tbody tr.active th, .table-reg tbody tr.active td,
+.table-reg tbody tr:hover th, .table-reg tbody tr.hover td{
     color: #fff;
     background: red;
 }
@@ -271,7 +274,7 @@ nav{
     background-color: #a8bbbf;
 }
 
-.ler-modal,
+.modal-read,
 .modal-update,
 .modal-delete{
     display: none;
@@ -329,32 +332,29 @@ nav{
 }
 
 .close-modal-delete,
-.close-modal-ler,
+.close-modal-read,
 .close-modal-update{
     font-size: 24px;
     font-weight: bold;
     cursor: pointer;
 }
 
-.close-modal-delete:hover,
-.close-modal-delete:focus,
-.close-modal-ler:hover,
-.close-modal-ler:focus,
-.close-modal-update:hover,
-.close-modal-update:focus{
+.close-modal-delete:hover, .close-modal-delete:focus,
+.close-modal-read:hover, .close-modal-read:focus,
+.close-modal-update:hover, .close-modal-update:focus{
     color: black;
     text-decoration: none;
     cursor: pointer;
 }
 
 .modal-delete-corpo p,
-.modal-ler-corpo p{
+.modal-read-body p{
     font-size: 16px;
     margin-bottom: 20px;
 }
 
 .modal-delete-footer,
-.modal-ler-footer,
+.modal-read-footer,
 .modal-update-footer{
     display: flex;
     justify-content: flex-end;
@@ -379,10 +379,8 @@ nav{
     border-radius: 4px;;
 }
 
-.btn-delete-conf:hover,
-.btn-delete-conf:focus,
-.btn-cancel:hover,
-.btn-cancel:focus{
+.btn-delete-conf:hover, .btn-delete-conf:focus,
+.btn-cancel:hover, .btn-cancel:focus{
     outline: none;
 }
 
@@ -403,9 +401,9 @@ nav{
     box-shadow: rgba(0, 0, 0, .1) 0 2px 4px 0;
     box-sizing: border-box;
     color: rgb(12, 12, 12);
+    font-weight: bold;
     cursor: pointer;
-    font-size: 16px;
-    font-weight: 400;
+    font-size: 1rem;
     outline: none;
     outline: 0;
     padding: 10px 25px;
@@ -503,7 +501,7 @@ hr{
     overflow: scroll;
 }
 
-#formReg{
+#form-reg{
     height: 100%;
     width: 100%;
     flex-direction: column;
@@ -531,6 +529,7 @@ label{
     position: relative;
     background-color: #E6E6E6;
     border-radius: 4px;
+    font-size: 1rem;
     text-decoration: none;
 }
 
@@ -569,7 +568,7 @@ label{
     cursor: pointer;
 }
 
-.form-corpo-selects{
+.form-body-selects{
     width: 100%;
 }
 
@@ -578,19 +577,23 @@ label{
     display: block;
 }
 
-#long-desc, #long-desc-update, #desc, #desc-update, #valor, #valor-update, #dataInput, #dateInput-update{
-    color: #333;
-    font-size: 18px;
+#long-desc, #long-desc-update,
+#desc, #desc-update,
+#valor, #valor-update,
+#dataInput, #dateInput-update{
+    color: black;
+    font-size: 1rem;
     padding: 10px;
-    border-radius: 1px;
+    border-radius: 4px;
     background-color: rgb(255, 255, 255);
     border: none;
     width: 100%;
+    height: 3rem;
     display: block;
     background-color: #E6E6E6;
 }
 
-.form-corpo-selects small{
+.form-body-selects small{
     visibility: hidden;
     position: absolute;
     margin-top: 5px;
@@ -620,10 +623,10 @@ label{
     cursor: pointer;
     margin-left: 10px;
     border: 1px solid rgba(27, 31, 35, 0.15);
-    border-radius: 6px;
+    border-radius: 4px;
     box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
     box-sizing: border-box;
-    color: #24292E;
+    color: black;
     cursor: pointer;
     font-weight: bold;
 }
@@ -646,7 +649,8 @@ label{
     transform: translateY(-2px);
 }
 
-.sucesso-registro, .sucesso-update{
+.popup-success,
+.sucesso-update{
     position: fixed;
     top: 0;
     left: 0;
@@ -658,14 +662,16 @@ label{
     visibility: hidden;
 }
 
-.sucesso-registro-content, .sucesso-update-content{
+.popup-success,
+.sucesso-update-content{
     background-color: #333;
     padding: 10px;
     border-radius: 5px;
     border: 3px solid rgb(252, 213, 53);
 }
 
-.sucesso-registro-content p, .sucesso-update-content p{
+.popup-success p,
+.sucesso-update-content p{
     font-size: 30px;
     color: #fff;
 }
@@ -838,4 +844,209 @@ label{
 .valores-cards-detalhes{
     display: flex;
     align-items: center;
+}
+
+@media only screen and (min-width: 1281px) and (max-width: 1500px){
+    .header-resume{
+        font-size: 25px;
+    }
+    .valores-corpo span, .valores-corpo p{
+        font-size: 14px;
+    }
+    .resume{
+        width: 100%;
+    }
+    .modal-body{
+        width: 40%;
+        height: auto;
+    }
+}
+
+@media only screen and (min-width: 1250px){
+    .search input[type=text]:focus{
+        width: 31.25rem;
+    }
+    .valores-corpo span, .valores-corpo p{
+        font-size: 2.5rem;
+    }
+    .modal-body{
+        width: 40%;
+        height: auto;
+    }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1280px){
+    body{
+        height: auto;
+        overflow-y: scroll;
+    }
+    .header-resume{
+        font-size: 18px;
+    }
+    .valores-corpo span, .valores-corpo p{
+        font-size: 25px;
+    }
+    .valores-corpo{
+        flex-wrap: wrap;
+    }
+    .resume{
+        width: 100%;
+    }
+    .options{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        padding: 10px;
+        height: auto;
+    }
+    .cont-form, .cont-form select{
+        width: 18.75rem;
+        order: 2;
+    }
+    .btn-open{
+        width: 18.75rem;
+        order: 3;
+    }
+    .search{
+        display: flex;
+        justify-content: center;
+        position: relative;
+    }
+    .search input[type=text]{
+        padding: 12px 10px;
+    }
+    .search input[type=text]:focus{
+        width: 30.25rem;
+    }
+    .table{
+        width: 100%;
+    }
+    .table-reg thead tr, .table-reg thead th{
+        font-size: 12px;
+    }
+    .table-reg tbody th, .table-reg tbody td{
+        padding: 10px 15px;
+        font-size: 12px;
+    }
+    .modal-body{
+        width: 90%;
+        height: auto;
+    }
+    .modal-content-update{
+        width: 90%;
+        height: auto;
+    } 
+}
+
+@media only screen and (max-width: 950px){
+    .header-resume{
+        font-size: 30px;
+    }
+    .valores-corpo span, .valores-corpo p{
+        font-size: 18px;
+    }
+    body{
+        height: auto;
+        overflow-y: scroll;
+    }
+}
+
+@media screen and (max-width: 769px){
+    body{
+        height: auto;
+        overflow-y: scroll;
+    }
+    .nav-item{
+        display: none;
+        background: #25252b;
+    }
+    .mobile-menu-icon{
+        display: block;
+    }
+    .mobile-menu-icon button{
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        display: flex;
+    }
+    .mobile-menu div{
+        background: #25252b;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        padding-bottom: 1rem;
+    }
+    .mobile-menu .nav-item{
+        display: block;
+        padding-top: 1rem 2rem;
+    }
+    .open{
+        display: block;
+    }
+    .header-resume{
+        font-size: 18px;
+    }
+    .valores-corpo span, .valores-corpo p{
+        font-size: 35px;
+    }
+    .resume{
+        width: 100%;
+        height: 37.5rem;
+        margin-top: 10px;
+    }
+    .resume-cards{
+        margin: 10px auto;
+        width: 70%;
+        height: 180px;
+    }
+    .options{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        padding: 10px;
+        height: auto;
+    }
+    .cont-form, .cont-form select{
+        width: 18.75rem;
+        order: 2;
+    }
+    .btn-open{
+        width: 18.75rem;
+        order: 3;
+    }
+    .search{
+        display: flex;
+        justify-content: center;
+        position: relative;
+    }
+    .search input[type=text]{
+        padding: 12px 10px;
+    }
+    .table{
+        width: 100%;
+        height: 100%;
+    }
+    .table-reg thead tr, .table-reg thead th{
+        font-size: 12px;
+    }
+    .table-reg tbody th, .table-reg tbody td{
+        padding: 10px 15px;
+        font-size: 12px;
+    }
+    .modal-body{
+        width: 100%;
+        height: 100%;
+    }
+    .modal-container{
+        height: 100%;
+        border-top: 0;
+        position: absolute;
+        top: 0;
+    }
+    .modal-content-update{
+        width: 90%;
+        height: auto;
+    }
 }

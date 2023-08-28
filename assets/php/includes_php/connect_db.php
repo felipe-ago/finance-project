@@ -1,8 +1,8 @@
 <?php
 $servername = "localhost";
 $username   = "root";
-$password   = "Tib11812";
-$dbname     = "testefaixa";
+$password   = "senha";
+$dbname     = "teste_de_faixa";
 
 // Create connection
 $connect = mysqli_connect($servername, $username, $password, $dbname);
