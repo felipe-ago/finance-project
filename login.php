@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,28 +11,33 @@
     <title>Login</title>
     <div>
         <a href="index.php" style="color:white;">Tela de Home</a>
+    </div>
 </head>
 <body>
-        <div class="corpo">
+        <div class="body">
         <header>
             <h2>Entre em Sua Conta</h2>
         </header>
-        <form class="form" id="loginForm" method="post">
-            <div class="form-corpo">
+        <form class="form" action="assets/php/action_php/login_authenticator.php" id="loginForm" method="POST">
+            <div class="form-control">
                 <label for="email">Email</label>
-                <input type="email" autocomplete="off" id="email" name="email" placeholder="Digite aqui seu email...">
+                <input type="email" id="email" name="email" placeholder="Digite aqui seu email...">
+                <i class="img-success"><img src="assets/img/success-icon.svg" alt=""></i>
+                <i class="img-error"><img src="assets/img/error-icon.svg" alt=""></i>
                 <div class="erroMsg"></div>
             </div>
-            <div class="form-corpo">
+            <div class="form-control">
                 <label for="password">Senha</label>
-                <input type="password" autocomplete="off" id="password" class="password" name="password" placeholder="Digite aqui sua senha...">
+                <input type="password" id="password" class="password" name="password" placeholder="Digite aqui sua senha...">
+                <i class="img-success"><img src="assets/img/success-icon.svg" alt=""></i>
+                <i class="img-error"><img src="assets/img/error-icon.svg" alt=""></i>
                 <div class="erroMsg"></div>
             </div>
             <button type="submit">Login</button>
         </form>
         <footer>
             <h5>Não tem uma conta?</h5>
-            <h3><a href="cadastro.php">Faça seu cadastro</a></h3>
+            <h3><a href="signup.php">Faça seu cadastro</a></h3>
         </footer>
     </div>
 </body>

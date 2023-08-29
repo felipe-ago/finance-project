@@ -98,6 +98,11 @@ nav{
     color: #fff;
 }
 
+.user{
+    text-decoration: none;
+    color: white;
+}
+
 /*BODY*/
 
 .body{
@@ -250,8 +255,10 @@ nav{
     width: 5%;
 }
 
-.table-reg tbody tr.active th, .table-reg tbody tr.active td,
-.table-reg tbody tr:hover th, .table-reg tbody tr.hover td{
+.table-reg tbody tr.active th,
+.table-reg tbody tr.active td,
+.table-reg tbody tr:hover th,
+.table-reg tbody tr.hover td{
     color: #fff;
     background: red;
 }
@@ -274,7 +281,7 @@ nav{
     background-color: #a8bbbf;
 }
 
-.modal-read,
+.modal-reading,
 .modal-update,
 .modal-delete{
     display: none;
@@ -290,6 +297,7 @@ nav{
 }
 
 .modal-content-delete,
+.modal-content-read,
 .modal-content-ler{
     background-color: #fff;
     margin: 10% auto;
@@ -311,7 +319,7 @@ nav{
     overflow-y: scroll;
 }
 
-.modal-update-corpo{
+.modal-update-body{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -336,18 +344,22 @@ nav{
 .close-modal-update{
     font-size: 24px;
     font-weight: bold;
+    color: #aaa;
     cursor: pointer;
 }
 
-.close-modal-delete:hover, .close-modal-delete:focus,
-.close-modal-read:hover, .close-modal-read:focus,
-.close-modal-update:hover, .close-modal-update:focus{
+.close-modal-delete:hover,
+.close-modal-delete:focus,
+.close-modal-read:hover,
+.close-modal-read:focus,
+.close-modal-update:hover,
+.close-modal-update:focus{
     color: black;
     text-decoration: none;
     cursor: pointer;
 }
 
-.modal-delete-corpo p,
+.modal-delete-body p,
 .modal-read-body p{
     font-size: 16px;
     margin-bottom: 20px;
@@ -379,8 +391,10 @@ nav{
     border-radius: 4px;;
 }
 
-.btn-delete-conf:hover, .btn-delete-conf:focus,
-.btn-cancel:hover, .btn-cancel:focus{
+.btn-delete-conf:hover,
+.btn-delete-conf:focus,
+.btn-cancel:hover,
+.btn-cancel:focus{
     outline: none;
 }
 
@@ -394,7 +408,7 @@ nav{
     background-color: #a8bbbf;
 }
 
-.btn-mais{
+.btn-more{
     background-color: rgb(252, 213, 53);
     border: 1px solid rgb(252, 213, 53);
     border-radius: 4px;
@@ -413,7 +427,7 @@ nav{
     touch-action: manipulation;
 }
 
-.btn-mais:hover{
+.btn-more:hover{
     box-shadow: rgba(0, 0, 0, .15) 0 3px 9px 0;
     transform: translateY(-2px);
     background-color: rgb(226, 190, 47);
@@ -548,8 +562,8 @@ label{
     appearance: none;
 }
 
-.form-corpo select:active,
-.form-corpo select:focus{
+.form-body select:active,
+.form-body select:focus{
     outline: none;
     box-shadow: none;
 }
@@ -577,10 +591,14 @@ label{
     display: block;
 }
 
-#long-desc, #long-desc-update,
-#desc, #desc-update,
-#valor, #valor-update,
-#dataInput, #dateInput-update{
+#long-desc,
+#long-desc-update,
+#desc,
+#desc-update,
+#value,
+#value-update,
+#dateInput,
+#dateInput-update{
     color: black;
     font-size: 1rem;
     padding: 10px;
@@ -650,7 +668,7 @@ label{
 }
 
 .popup-success,
-.sucesso-update{
+.success-update{
     position: fixed;
     top: 0;
     left: 0;
@@ -663,7 +681,7 @@ label{
 }
 
 .popup-success,
-.sucesso-update-content{
+.c-update-content{
     background-color: #333;
     padding: 10px;
     border-radius: 5px;
@@ -671,7 +689,7 @@ label{
 }
 
 .popup-success p,
-.sucesso-update-content p{
+.success-update-content p{
     font-size: 30px;
     color: #fff;
 }
@@ -731,7 +749,7 @@ label{
     display: none;
 }
 
-.modal-detalhe{
+.modal-detail{
     display: none;
     position: fixed;
     z-index: 10;
@@ -741,13 +759,13 @@ label{
     height: 100%;
 }
 
-.modal-detalhe-corpo{
+.modal-detail-body{
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.modal-content-detalhe{
+.modal-content-detail{
     background-color: #242526;
     margin: 10% auto;
     padding: 20px;
@@ -762,7 +780,7 @@ label{
     height: 300px;
 }
 
-.cards-detalhes{
+.cards-details{
     background: rgb(48, 51, 59);
     border: 2px solid rgb(252, 213, 53);
     border-radius: 5px;
@@ -770,35 +788,35 @@ label{
     margin: 10px 0 10px;
 }
 
-.valores-detalhes{
+.resume-details{
     text-align: center;
 }
 
-.valores-cards-detalhes span,
-.valores-cards-detalhes p{
+.resume-cards-details span,
+.resume-cards-details p{
     font-size: 18px;
     color: #fff;
 }
 
-.detalhes-header{
+.details-header{
     font-size: 30px;
     font-weight: 400;
     color: #fff;
 }
 
-.header-cards-detalhes{
+.header-cards-details{
     font-size: 20px;
     color: #a8bbbf;
 }
 
-.close-modal-detalhe{
+.close-modal-detail{
     font-size: 24px;
     font-weight: bold;
     color: #aaa;
     cursor: pointer;
 }
 
-.btn-detalhe{
+.btn-detail{
     background-color: #aaa;
     font-size: 17px;
     color: black;
@@ -811,37 +829,37 @@ label{
     touch-action: manipulation;
 }
 
-.btn-detalhe:hover{
+.btn-detail:hover{
     box-shadow: rgba(0, 0, 0, .15) 0 3px 9px 0;
     transform: translateY(-2px);
     background-color: #F3F4F6;
 }
 
-.close-modal-detalhe:hover,
-.close-modal-detalhe:focus{
+.close-modal-detail:hover,
+.close-modal-detail:focus{
     text-decoration: none;
     cursor: pointer;
 }
 
-.modal-detalhe-footer{
+.modal-detail-footer{
     display: flex;
     justify-content: flex-end;
 }
 
-.header-modal-detalhe{
+.header-modal-detail{
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
 }
 
-.header-modal-detalhe h2{
+.header-modal-detail h2{
     font-size: 20px;
     font-weight: bold;
     color: #fff;
 }
 
-.valores-cards-detalhes{
+.resume-cards-details{
     display: flex;
     align-items: center;
 }
@@ -850,7 +868,8 @@ label{
     .header-resume{
         font-size: 25px;
     }
-    .valores-corpo span, .valores-corpo p{
+    .resume-body span,
+    .resume-body p{
         font-size: 14px;
     }
     .resume{
@@ -866,7 +885,8 @@ label{
     .search input[type=text]:focus{
         width: 31.25rem;
     }
-    .valores-corpo span, .valores-corpo p{
+    .resume-body span,
+    .resume-body p{
         font-size: 2.5rem;
     }
     .modal-body{
@@ -883,10 +903,11 @@ label{
     .header-resume{
         font-size: 18px;
     }
-    .valores-corpo span, .valores-corpo p{
+    .resume-body span,
+    .resume-body p{
         font-size: 25px;
     }
-    .valores-corpo{
+    .resume-body{
         flex-wrap: wrap;
     }
     .resume{
@@ -900,7 +921,8 @@ label{
         padding: 10px;
         height: auto;
     }
-    .cont-form, .cont-form select{
+    .cont-form,
+    .cont-form select{
         width: 18.75rem;
         order: 2;
     }
@@ -922,10 +944,12 @@ label{
     .table{
         width: 100%;
     }
-    .table-reg thead tr, .table-reg thead th{
+    .table-reg thead tr,
+    .table-reg thead th{
         font-size: 12px;
     }
-    .table-reg tbody th, .table-reg tbody td{
+    .table-reg tbody th,
+    .table-reg tbody td{
         padding: 10px 15px;
         font-size: 12px;
     }
@@ -943,7 +967,8 @@ label{
     .header-resume{
         font-size: 30px;
     }
-    .valores-corpo span, .valores-corpo p{
+    .resume-body span,
+    .resume-body p{
         font-size: 18px;
     }
     body{
@@ -987,7 +1012,8 @@ label{
     .header-resume{
         font-size: 18px;
     }
-    .valores-corpo span, .valores-corpo p{
+    .resume-body span,
+    .resume-body p{
         font-size: 35px;
     }
     .resume{
@@ -1008,7 +1034,8 @@ label{
         padding: 10px;
         height: auto;
     }
-    .cont-form, .cont-form select{
+    .cont-form,
+    .cont-form select{
         width: 18.75rem;
         order: 2;
     }
@@ -1028,10 +1055,12 @@ label{
         width: 100%;
         height: 100%;
     }
-    .table-reg thead tr, .table-reg thead th{
+    .table-reg thead tr,
+    .table-reg thead th{
         font-size: 12px;
     }
-    .table-reg tbody th, .table-reg tbody td{
+    .table-reg tbody th,
+    .table-reg tbody td{
         padding: 10px 15px;
         font-size: 12px;
     }

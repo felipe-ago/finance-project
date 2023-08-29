@@ -1,3 +1,7 @@
+<?php
+include_once('assets/php/includes_php/validate_session.php');
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -24,22 +28,21 @@
             <div>
                 <a href="login.php" style="color:white;">Tela de Login</a>
                 <span style="color:white">|</span>
-                <a href="cadastro.php" style="color:white;">Tela de Cadastro</a>
+                <a href="signup.php" style="color:white;">Tela de Cadastro</a>
             </div>
             <div class="links">
-                <span>Dados do Usuário aqui...</span>
-                <!--<?php echo $_SESSION['usuario'] ?>-->
                 <div class="nav-item">
                     <a href="#">
+                        <span class="user"><?php echo $_SESSION['usuario'] ?></span>
                         <img src="assets/img/usuario_icon.png">
                     </a>                    
                     <div class="drop_menu">
-                        <a href="" class="logout">Sair</a>
+                        <a href="assets/php/action_php/logout.php" class="logout">Sair</a>
                     </div>
                 </div>
-                <div class="mobile-menu-icon">
-                    <button><img class="icon" src="assets/img/menu_white_36dp.svg" alt=""></button>
-                </div>
+            </div>
+            <div class="mobile-menu-icon">
+                <button><img class="icon" src="assets/img/menu_white_36dp.svg" alt=""></button>
             </div>
         </nav>
         <div class="mobile-menu">
@@ -79,14 +82,14 @@
                     <form action="" method="post" id="form-reg">
                         <div class="form-body">                            
                             <label class="form-label" for="dateInput">Data do Lançamento</label>
-                            <input type="date" name="data" id="dataInput" required>
+                            <input type="date" name="date" id="dateInput" required>
                             <small class="msgErro"></small>
 
                             <p class="space"></p>
 
                             <label for="select">Tipo</label>
                             <div class="select-control">
-                                <select name="select" required>
+                                <select name="select" required id="type">
                                     <option value="" disabled selected>Selecione</option>
                                     <option value="renda">Renda</option>
                                     <option value="despesa">Despesa</option>
@@ -97,7 +100,7 @@
 
                             <label for="sub-tipo">Subtipo</label>
                             <div class="select-control">
-                                <select name="select-sub" required>
+                                <select name="select-sub" required id="subtype">
                                     <option value="" disabled selected>Selecione</option>
                                     <option value="previsto">Previsto</option>
                                     <option value="extra">Extra</option>
@@ -119,8 +122,8 @@
                             <p class="space"></p>
 
                             <div class="form-body-selects">
-                                <label class="form-label" for="valor">Valor</label>
-                                <input type="text" id="valor" name="valor" placeholder="Digite um valor R$" max="9" required>
+                                <label class="form-label" for="value">Valor</label>
+                                <input type="text" id="value" name="value" placeholder="Digite um valor R$" max="9" required>
                             </div>
 
                             <p class="space"></p>
@@ -187,16 +190,16 @@
                     </tr>
                 </thead>
 
-                <tbody class="table-info" id="table-corpo">
+                <tbody class="table-info" id="table-body">
                     <?php 
-                        include_once('assts/php/crud_php/read.php');
+                        include_once('assets/php/crud_php/read.php');
                     ?>
-                    <button class="btn-mais" id="btn-detalhe">
+                    <button class="btn-more detail" id="btn-detail">
                         Relatório
                     </button>
                 </tbody>
 
-                <div class="modal-read modal-icones" id="modal-read">
+                <div class="modal-reading modal-icones" id="modal-read">
                     <div class="modal-content-read">
                         <div class="header-modal-table">
                             <h2>Detalhes dos Lançamentos</h2>
@@ -211,21 +214,23 @@
                     </div> 
                 </div>
 
-                <div id="modal-update" class="modal-update modal-icones">
+                <div class="modal-update modal-icones" id="modal-update">
                     <div class="modal-content-update">
                         <div class="header-modal-table">
                             <h2>Alterar Lançamento</h2>
                             <span class="close-modal-update">&times;</span>
                         </div>
+
                         <hr>
-                        <div class="modal-update-corpo">
+
+                        <div class="modal-update-body">
                             <form id="form-update">
-                                <div class="form-corpo-selects">
-                                    <label class="form-label" for="date-update">Data do lançamento</label>
+                                <div class="form-body-selects">
+                                    <label class="form-label" for="dateInput-update">Data do lançamento</label>
                                     <input type="date" name="date-update" id="dateInput-update" required>
                                     <small class="msgErro-update">Erro</small>
                                 </div>
-                                <div class="form-corpo">
+                                <div class="form-body">
                                     <label for="select-update">Tipo</label>
                                     <div class="select-control">
                                         <select name="select-update" id="type" required>
@@ -235,7 +240,8 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-corpo">
+
+                                <div class="form-body">
                                     <label for="subtype-update">Sub Tipo</label>
                                     <div class="select-control">
                                         <select name="subtype-update" id="subtype" required>
@@ -245,26 +251,32 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-corpo">
+
+                                <div class="form-body">
                                     <label for="desc-update">Descrição Breve</label>
                                     <input type="text" name="desc-update" placeholder="Descrição breve do registro" id="desc-update" required>
                                 </div>
-                                <div class="form-corpo">
+
+                                <div class="form-body">
                                     <label class="form-label" for="longDesc-update">Descrição Longa</label>
-                                    <input type="text" name="desc-detalhada-update" id="long-desc-update" placeholder="Descrição detalhada do registro [opcional]">
+                                    <input type="text" name="desc-detailed-update" id="long-desc-update" placeholder="Descrição detalhada do registro [opcional]">
                                 </div>
-                                <div class="form-corpo">
-                                    <label class="form-label" for="valor-update">Valor</label>
-                                    <input type="text" id="valor-update" name="valor-update" placeholder="Digite o valor R$" max="9">
+
+                                <div class="form-body">
+                                    <label class="form-label" for="value-update">Valor</label>
+                                    <input type="text" id="value-update" name="value-update" placeholder="Digite o valor R$" max="9">
                                 </div>
-                                <div class="sucesso-update">
-                                    <div class="sucesso-update-content">
-                                        <p class="succs-update">Registro Alterado</p>
+
+                                <div class="success-update">
+                                    <div class="success-update-content">
+                                        <p class="success-update">Registro Alterado</p>
                                     </div>
                                 </div>
                             </form>
                         </div>
+
                         <hr>
+
                         <div class="btns btns-footer">
                             <button id="button-close" class="btn-cancel close-modal-delete">Cancelar</button>
                             <button id="button-ok" class="btn-update-conf" form="form-update">Salvar</button>
@@ -272,13 +284,13 @@
                     </div>
                 </div>
 
-                <div id="modal-delete" class="modal-delete modal-icones">
+                <div class="modal-delete modal-icones" id="modal-delete">
                     <div class="modal-content-delete">
                         <div class="header-modal-table">
                             <h2>Excluir Lançamento</h2>
                             <span class="close-modal-delete">&times;</span>
                         </div>
-                        <div class="modal-delete-corpo">
+                        <div class="modal-delete-body">
                             <p>Tem certeza que dejesa deletar este lançamento?</p>
                         </div>
                         <div class="modal-delete-footer">
@@ -287,48 +299,70 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="modal-detail modal-icones" id="modal-detail">
+                    <div class="modal-content-detail">
+                        <div class="modal-header-table">
+                            <h2>Relatorio</h2>
+                            <span class="close-modal-detail">&times;</span>
+                        </div>
+
+                        <div class="modal-body-detail">
+                            <div id="content-modal-detail"></div>
+                        </div>
+
+                        <div class="modal-footer-detail">
+                            <button class="btn-cancel close-modal-detail">Fechar</button>
+                            <button id="gerar-PDF">Gerar PDF</button>
+                        </div>
+                    </div>
+                </div>
+
             </table>
         </div>
-        <div class="modal-detalhe">
-            <div class="modal-content-detalhe">
-                <div class="header-modal-detalhe">
+        
+        <!--
+        <div class="modal-detail">
+            <div class="modal-content-detail">
+                <div class="header-modal-detail">
                     <h2>Detalhamento dos Lançamentos</h2>
-                    <span class="close-modal-detalhe">&times;</span>
+                    <span class="close-modal-detail">&times;</span>
                 </div>
-                <div class="modal-detalhe-corpo">
+                <div class="modal-detail-body">
                     <div class="grafico">
-                        <canvas id="detalhamento"></canvas>
+                        <canvas id="detailing"></canvas>
                     </div>
-                    <div class="valores-detalhes">
-                        <div class="detalhes-header">Total</div>
-                        <div class="cards-detalhes">
-                            <p class="header-cards-detalhes">Despesas</p>
-                            <div class="valores-cards-detalhes">
+                    <div class="resume-details">
+                        <div class="details-header">Total</div>
+                        <div class="cards-details">
+                            <p class="header-cards-details">Despesas</p>
+                            <div class="resume-cards-details">
                                 <span>R$</span>
-                                <p class="desepesa-detalhes">0,00</p>
+                                <p class="expense-details">0,00</p>
                             </div>
                         </div>
-                        <div class="cards-detalhes">
-                            <p class="header-cards-detalhes">Lucro</p>
-                            <div class="valores-cards-detalhes">
+                        <div class="cards-details">
+                            <p class="header-cards-details">Lucro</p>
+                            <div class="resume-cards-details">
                                 <span>R$</span>
-                                <p class="lucro-detalhes">0,00</p>
+                                <p class="profit-details">0,00</p>
                             </div>
                         </div>
-                        <div class="cards-detalhes">
-                            <p class="header-cards-detalhes">Balanço</p>
-                            <div class="valores-cards-detalhes">
+                        <div class="cards-details">
+                            <p class="header-cards-details">Balanço</p>
+                            <div class="resume-cards-details">
                                 <span>R$</span>
-                                <p class="balance-detalhes">0,00</p>
+                                <p class="balance-details">0,00</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="modal-detalhe-footer">
-                    <button class="close-modal-detalhe btn-detalhe">FECHAR</button>
+                <div class="modal-detail-footer">
+                    <button class="close-modal-detail btn-detail">FECHAR</button>
                 </div>
             </div>
         </div>
+        -->
     </section>
 
     <script src="assets/js/index.js"></script>

@@ -14,7 +14,7 @@ body{
     font-family: 'Roboto Mono', monospace;
 }
 
-.corpo{
+.body{
     background: rgb(24, 26, 32);
     border-top: 2px solid rgb(252, 213, 53);
     border-bottom: 2px solid rgb(252, 213, 53);
@@ -50,17 +50,17 @@ header h2{
     padding: 40px 30px;
 }
 
-.form-corpo{
+.form-control{
     position: relative;
 }
 
-.form-corpo label{
+.form-control label{
     display: block;
     margin-bottom: 5px;
     color: #fff;
 }
 
-.form-corpo input{
+.form-control input{
     border: 2px solid rgb(166, 168, 172);
     background-color: rgb(24, 26, 32);
     color: #fff;

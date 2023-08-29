@@ -1,7 +1,8 @@
 <?php
-if (!isset($_SESSION)) {//Verificar se a sessão não já está aberta.
+if (!isset($_SESSION)) {
   session_start();
 }
+
 require __DIR__ . '/../includes_php/connect_db.php';
 $user_id = $_SESSION['id_usuario'];
 

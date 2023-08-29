@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
 $username   = "root";
-$password   = "senha";
+$password   = "Tib11812";
 $dbname     = "teste_de_faixa";
 
 // Create connection
