@@ -11,10 +11,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $data->password;
     $response = array();
     if (empty($email)) {
-        $response['error_email'] = 'preencha este campo';
+        $response['error_email'] = 'O campo usuário não pode estar em branco!';
         $response['status'] = 'error';
     } else if (empty($password)){
-        $response['error_password'] = 'preencha este campo';
+        $response['error_password'] = 'O campo senha não pode estar em branco!';
         $response['status'] = 'error';
     }else{
     
@@ -31,11 +31,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $response['redirect']   = '/index.php'; // adiciona a propriedade 'redirect' com a URL do index.php
 
             } else {
-                $response['error_password'] = 'senha incorreta';
+                $response['error_password'] = 'A senha está incorreta!';
                 $response['status'] = 'error';
             }
         } else {
-             $response['error_email'] = 'email não cadastrado em nosso sistema';
+             $response['error_email'] = 'Este e-mail não está cadastrado em nosso sistema!';
              $response['status'] = 'error';
         }
     }

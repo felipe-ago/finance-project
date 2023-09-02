@@ -98,7 +98,7 @@ include_once('assets/php/includes_php/validate_session.php');
 
                             <p class="space"></p>
 
-                            <label for="sub-tipo">Subtipo</label>
+                            <label for="sub-type">Subtipo</label>
                             <div class="select-control">
                                 <select name="select-sub" required id="subtype">
                                     <option value="" disabled selected>Selecione</option>
@@ -178,7 +178,7 @@ include_once('assets/php/includes_php/validate_session.php');
             </div>
         </div>
 
-        <div class="table" style="overflow-x:auto;">
+        <div class="custom-table" style="overflow-x:auto;">
             <table class="table-reg">
                 <thead>
                     <tr>
@@ -258,8 +258,8 @@ include_once('assets/php/includes_php/validate_session.php');
                                 </div>
 
                                 <div class="form-body">
-                                    <label class="form-label" for="longDesc-update">Descrição Longa</label>
-                                    <input type="text" name="desc-detailed-update" id="long-desc-update" placeholder="Descrição detalhada do registro [opcional]">
+                                    <label class="form-label" for="long-desc-update">Descrição Longa</label>
+                                    <input type="text" name="desc-long-update" id="long-desc-update" placeholder="Descrição detalhada do registro [opcional]">
                                 </div>
 
                                 <div class="form-body">
@@ -291,7 +291,7 @@ include_once('assets/php/includes_php/validate_session.php');
                             <span class="close-modal-delete">&times;</span>
                         </div>
                         <div class="modal-delete-body">
-                            <p>Tem certeza que dejesa deletar este lançamento?</p>
+                            <p>Tem certeza que dejesa excluir este lançamento?</p>
                         </div>
                         <div class="modal-delete-footer">
                             <button class="btn-delete-conf">SIM</button>
@@ -303,7 +303,7 @@ include_once('assets/php/includes_php/validate_session.php');
                 <div class="modal-detail modal-icones" id="modal-detail">
                     <div class="modal-content-detail">
                         <div class="modal-header-table">
-                            <h2>Relatorio</h2>
+                            <h2>Relatório</h2>
                             <span class="close-modal-detail">&times;</span>
                         </div>
 
@@ -313,7 +313,7 @@ include_once('assets/php/includes_php/validate_session.php');
 
                         <div class="modal-footer-detail">
                             <button class="btn-cancel close-modal-detail">Fechar</button>
-                            <button id="gerar-PDF">Gerar PDF</button>
+                            <button id="generatePDF">Gerar PDF</button>
                         </div>
                     </div>
                 </div>
@@ -365,7 +365,14 @@ include_once('assets/php/includes_php/validate_session.php');
         -->
     </section>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://kit.fontawesome.com/6abdafcf4c.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.2/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.2/vfs_fonts.js"></script>
     <script src="assets/js/index.js"></script>
+    <script src="assets/js/formUpdate.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
     
 </body>
 </html>

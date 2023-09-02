@@ -40,14 +40,14 @@ function validateEmail(email) {
   const formControl = input.parentElement;
 
   const smalls = formControl.querySelectorAll('.erroMsg')
-  formControl.classList.remove('snuccess');
+  formControl.classList.remove('success');
   formControl.classList.add("error");
   smalls.forEach((small) => {
     small.innerText = message;
     small.style.display = 'block';
-    samll.classList.add('shake');
+    small.classList.add('shake');
     setTimeout(() => {
-      samll.classList.remove('shake');
+      small.classList.remove('shake');
     }, 500);
   });
 }
@@ -82,7 +82,7 @@ function login(){
           successValidation(email);
         }
 
-        if ( data.error_password) {
+        if (data.error_password) {
           errorValidation(password, data.error_password);
         } else {
           successValidation(password);

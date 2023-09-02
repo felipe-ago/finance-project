@@ -1,225 +1,268 @@
-function toggleMobileMenu(iconSelector, menuSelector){
+function toggleMobileMenu(iconSelector, menuSelector) {
   const menuIcon = document.querySelector(iconSelector);
   const mobileMenu = document.querySelector(menuSelector);
 
   menuIcon.addEventListener("click", function () {
     const isOpen = mobileMenu.classList.contains('open');
-    mobileMenu.classList.toogle('open');
-    const iconSrc = isOpen ? "assets/img/menu_white_36dps.svg" : "assets/img/close_white_36dp.svg";
+    mobileMenu.classList.toggle('open');
+    const iconSrc = isOpen ? "assets/img/menu_white_36dp.svg" : "assets/img/close_white_36dp.svg";
     menuIcon.src = iconSrc;
-  })
+
+  });
 }
 
-toggleMobileMenu(".icon", "mobile-menu");
+toggleMobileMenu(".icon", ".mobile-menu");
 
-function updateTable(select, month){
+/*  filtro de meses + atualização dos cards */
+
+// Função para atualizar a tabela com dados do servidor
+function updateTable(select, month) {
   const referenceMonth = document.querySelector('.ref-month');
   fetch(`assets/php/crud_php/read.php?month=${month}`)
-  .then(response => response.text())
-  .then(data =>{
-    const tableBody = document.getElementById('table-body');
-    tableBody.innerHTML = data;
-    addViewIconClick();
-    addDeleteClick();
-    addUpdateClick();
-    referenceMonth.textContent = select.options[select.selectedIndex].text;
-  })
-  .catch(error => console.error(error));
+    .then(response => response.text())
+    .then(data => {
+      const tableBody = document.getElementById('table-body');
+      tableBody.innerHTML = data;
+      addViewIconClick();
+      addDeleteClick();
+      addUpdateClick();
+      referenceMonth.textContent = select.options[select.selectedIndex].text;
+    })
+    .catch(error => console.error(error));
 }
 
-function updateCards(month){
+// Função para atualizar os cartões com dados do servidor
+function updateCards(month) {
   fetch(`assets/php/action_php/cards.php?month=${month}`)
-  .then(response => response.json())
-  .then(data =>{
-    const expenses = data.expenses;
-    const income = data.income;
-    const profit = data.profit;
+    .then(response => response.json())
+    .then(data => {
+      const expenses = data.expenses;
+      const income = data.income;
+      const profit = data.profit;
 
-    document.querySelector('.expenses').innerHTML = expenses;
-    document.querySelector('.income').innerHTML = income;
-    document.querySelector('.profit').innerHTML = profit;
-  })
-  .catch(error => console.error(error));
+      document.querySelector('.expenses').innerHTML = expenses;
+      document.querySelector('.income').innerHTML = income;
+      document.querySelector('.profit').innerHTML = profit;
+    })
+    .catch(error => console.error(error));
 }
 
-function handleMonthChange(){
+// Manipulador de eventos para alterações no seletor de mês
+function handleMonthChange() {
   const select = document.getElementById('month');
   const month = select.value;
   localStorage.setItem('selectedMonth', month);
   const referenceMonth = document.querySelector('.ref-month');
-  if(month != '00'){
+  if (month !== '00') {
     updateTable(select, month);
     updateCards(month);
     referenceMonth.textContent = select.options[select.selectedIndex].text;
   }
 }
 
+// Adicionar o manipulador de eventos ao seletor de mês
 const filterMonth = document.querySelector("#month");
 filterMonth.addEventListener("change", handleMonthChange);
 
-function restoreSelectedMonth(){
+
+
+function restoreSelectedMonth() {
   const select = document.getElementById('month');
   const defaultMonth = '00';
   const selectedMonth = localStorage.getItem('selectedMonth') || defaultMonth;
   select.value = selectedMonth;
-  select.dispatchEvent(new Event("change"));
+  select.dispatchEvent(new Event('change'));
+
 }
 
-document.addEventListener("DOMContentLoaded", () =>{
+/* salvar o mes selecionado*/
+
+document.addEventListener("DOMContentLoaded", () => {
   const select = filterMonth;
   const months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
 
+  // Obter a data atual
   const today = new Date();
 
-  for(let i = 0; i < 12; i++){
+  // Iterar retroativamente 12 meses e gerar as opções do select
+  for (let i = 0; i < 12; i++) {
     const date = new Date(today.getFullYear(), today.getMonth() - i, 1);
     const year = date.getFullYear();
     const month = date.getMonth();
-    const option = document.createElement('option');
+    const option = document.createElement("option");
     option.value = `${year}-${month < 9 ? "0" : ""}${month + 1}`;
     option.text = `${months[month]} ${year}`;
     select.appendChild(option);
   }
 
   restoreSelectedMonth();
+  // Executar a função de inicialização uma vez para carregar os dados iniciais
   handleMonthChange();
 });
 
-function searchTable(searchInput, tableInfo, resume){
+
+
+
+/*campo de pesquisa*/
+
+
+
+function searchTable(searchInput, tableInfo, resumo) {
   searchInput.addEventListener('keyup', () => {
-    resume.style.display = 'none';
-    let searchInputValue = searchInput.value.toLoweCase()
+    resumo.style.display = 'none'
+    let searchInputValue = searchInput.value.toLowerCase()
 
-    let tableValues = tableInfo.getElementByIdTagName('tr')
+    /* vai buscar dentro do TBODY os tr que é onde estão as informações da tabela*/
+    let tableValues = tableInfo.getElementsByTagName('tr')
 
-    for (let position in tableValues){
-      if (true === isNaN(position)){
+    /* agora percorrer linha por linha as do tr */
+    for (let posicao in tableValues) {
+      if (true === isNaN(posicao)) {
         continue;
       }
+      let contentLine = tableValues[posicao].innerHTML.toLowerCase()
+      if (true === contentLine.includes(searchInputValue)) {
+        tableValues[posicao].style.display = '';
 
-      let contentLine = tableValue[position].innerHTML.toLoweCase();
-
-      if (true === contentLine.includes(searchInputValue)){
-        tableValues[position].style.display = '';
       } else {
-        tableValues[position].style.display = 'none';
+        tableValues[posicao].style.display = 'none';
+
       }
     }
   })
 
   searchInput.addEventListener('blur', () => {
-    resume.style.display = ''
+    resumo.style.display = ''
   })
 }
 
-const searchInput = document.querySelector('.search-input');
-const tableInfo = document.querySelector('.table-info');
-const resume = document.querySelector('.resume');
-searchTable(searchInput, tableInfo, resume);
+// Exemplo de como usar a função
+const searchInput = document.querySelector('.search-input')
+const tableInfo = document.querySelector('.table-info')
+const resume = document.querySelector('.resume')
+searchTable(searchInput, tableInfo, resume)
 
-const modalBody = document.querySelector(".modal-container");
-const showModal = document.querySelector(".btn-open");
-const closeModal = document.querySelectorAll(".close-modal");
 
-function openModal(){
-  modalBody.classList.add("active");
+
+/*  modal lançamentos */
+
+
+const modalContainer = document.querySelector('.modal-container');
+const showModalbtn = document.querySelector('.btn-open');
+const closeModal = document.querySelectorAll('.close-modal');
+
+function openModal() {
+  modalContainer.classList.add('active');
 }
 
-function closeModalBody(){
-  modalBody.classList.remove("active");
+function closeModalContainer() {
+  modalContainer.classList.remove('active');
 }
 
-showModal.addEventListener("click", openModal);
+showModalbtn.addEventListener('click', openModal);
 
-for(let i = 0; i <closeModal.length; i++){
-  closeModal[i].addEventListener("click", closeModalBody);
+for (let i = 0; i < closeModal.length; i++) {
+  closeModal[i].addEventListener('click', closeModalContainer);
 }
+
+/* Validação de Data */
 
 const dateInput = document.querySelector("#dateInput");
 
 dateInput.addEventListener('input', function () {
   const selectedDate = new Date(dateInput.value);
   const currentDate = new Date();
-  const small = document.querySelector('.errorMsg');
+  const small = document.querySelector('.msgErro');
 
   if (isNaN(selectedDate)) {
-    small.innerHTML = 'Digite uma data válida!';
+    small.innerText = 'Digite uma data válida*';
     small.style.display = 'block';
-    small.style.color = 'red';
+    small.style.color = '#DB5A5A';
     return;
   } else {
-    small.style.display ='none';
+    small.style.display = 'none';
   }
 
   if (selectedDate > currentDate) {
-    small.innerText = 'Digite uma data anterior ou igual a data atual!';
-    small.style.display = 'block' ;
-    small.style.color = 'red';
+    small.innerText = 'Digite uma data anterior ou igual à data atual';
+    small.style.display = 'block';
+    small.style.color = '#DB5A5A';
     dateInput.value = "";
   } else {
     small.style.display = 'none';
   }
 });
 
-$(document).read(function () {
-  $('#value').mask('#.##0,00', {reverse: true});
+/* Máscara de Valor */
+
+$(document).ready(function () {
+  $('#value').mask('#.##0,00', { reverse: true });
 });
 
+
+
 function createTransaction(event) {
+
   event.preventDefault();
   const form = event.target;
   const formData = new FormData(form);
-  $.loadingOverlay("show")
+  $.LoadingOverlay("show")
 
   fetch("assets/php/crud_php/create.php", {
     method: "POST",
     body: formData
   })
-  .then(response => response.json())
-  .then(data => {
+    .then(response => response.json())
+    .then(data => {
 
-    if (data.status === 'success') {
-      const successModal = document.querySelector('.popup-success');
+      if (data.status === 'success') {
+        const successModal = document.querySelector('.popup-success');
 
-      successModal.style.visibility = 'visible';
-      successModal.classList.add('animate');
-      successModal.style.visibility = 'hidden';
-      form.reset();
-      modalContainer.classList.remove('active');
-      location.reload();
-    } else if (data.status === 'error') {
-      alert(data.message)
-    }
-  })
-  .catch(error => {
-    console.error(error);
-  }).finally(() => {
-    $.loadingOverlay("hide");
-  })
+        successModal.style.visibility = 'visible';
+        successModal.classList.add('animate');
+
+        successModal.style.visibility = 'hidden';
+        form.reset();
+        modalContainer.classList.remove('active');
+        location.reload();
+
+
+      } else if (data.status === 'error') {
+        alert(data.message)
+      }
+    })
+    .catch(error => {
+      console.error(error);
+    }).finally(() => {
+      $.LoadingOverlay("hide")
+    })
 }
 
-document.getElementById("form-create").addEventListener("submit", createTransaction);
 
+document.getElementById("form-reg").addEventListener("submit", createTransaction);
+
+
+// função para adicionar evento de clique em ícones de visualização
 function addViewIconClick() {
   const viewIcons = document.querySelectorAll('.view-icon');
   viewIcons.forEach(viewIcon => {
     viewIcon.addEventListener('click', async () => {
       const releaseId = viewIcon.dataset.id;
       const modal = document.getElementById('modal-read');
-      const modalContent = modal.querySelector('long-description');
+      const modalContent = modal.querySelector('.long-description');
       try {
         const response = await fetch(`assets/php/crud_php/read.php?release_id=${releaseId}`);
         const data = await response.text();
-        modalContent.innerHTML = data || 'Você não adicionou nenhuma descrição extra nesse lançamento!';
+        modalContent.innerHTML = data || 'Você não adicionou nenhuma descrição extra a esse lançamento :(';
         modal.style.display = 'block';
-        console.log(response);
+        console.log(response)
       } catch (error) {
         console.error('Erro ao recuperar a long_description: ', error);
-      } finally {
-        $.loadingOverlay("hide");
+      }finally {
+        $.LoadingOverlay("hide");
       }
-    });
-  });
+    })
+  })
 }
 
 function addUpdateClick() {
@@ -238,23 +281,23 @@ function addUpdateClick() {
         formData.append('release_id', releaseId);
         try {
           const response = await fetch('assets/php/crud_php/update.php', {
-            method: 'POST',
+            method: "POST",
             body: formData
           });
           const data = await response.json();
           if (data.status === 'success') {
-            const successModal = document.querySelector('success-update');
+            const successModal = document.querySelector('.success-update');
             successModal.style.visibility = 'visible';
             successModal.classList.add('animate');
             successModal.style.visibility = 'hidden';
             location.reload();
           } else if (data.status === 'error') {
-            alert(data.message);
+            alert(data.message)
           }
         } catch (error) {
           console.error(error);
         }
-      });
+      })
     });
   });
 }
@@ -263,12 +306,13 @@ async function retrievePostingData(releaseId) {
   try {
     const response = await fetch(`assets/php/action_php/get_release_data.php?id=${releaseId}`);
     const data = await response.json();
+    // preenche os campos do formulário com os valores retornados pela consulta
     document.querySelector('#dateInput-update').value = data.datetime;
-    document.querySelector('#type').value= data.type;
+    document.querySelector('#type').value = data.type;
     document.querySelector('#subtype').value = data.subtype;
     document.querySelector('#desc-update').value = data.description;
     document.querySelector('#long-desc-update').value = data.long_description;
-    docuemnto.querySelector('#value-update').value = data.launch_value;
+    document.querySelector('#value-update').value = data.launch_value;
   } catch (error) {
     console.error(error);
   }
@@ -282,18 +326,19 @@ function addDeleteClick() {
       const modalDelete = document.querySelector('#modal-delete');
       modalDelete.style.display = 'block';
       const confirmaButton = document.querySelector('.btn-delete-conf');
-      confirmaButton.addEventListener('click', async () => {
+      confirmaButton.addEventListener("click", async () => {
         try {
           const response = await fetch(`assets/php/crud_php/delete.php?release_id=${releaseId}`);
-          const data = await response.text ();
+          const data = await response.text();
           location.reload();
         } catch (error) {
-          console.error("Erro ao exluiro o registro: ", error);
+          console.error('Erro ao excluir o registro: ', error);
         }
       });
     });
   });
 }
+
 
 function closePopUp() {
   document.querySelectorAll('.close-modal-read, .close-modal-update, .close-modal-delete, .close-modal-detail').forEach(closeButton => {
@@ -302,13 +347,12 @@ function closePopUp() {
     });
   });
 }
-
 closePopUp()
 
 const logoutBtns = document.querySelectorAll('.logout');
 
 logoutBtns.forEach(btn => {
-  btn.addEventListener ('click' , () => {
+  btn.addEventListener('click', () => {
     if (localStorage.getItem('selectedMonth')) {
       localStorage.removeItem('selectedMonth');
     }
@@ -316,78 +360,89 @@ logoutBtns.forEach(btn => {
 });
 
 const months = [
-  'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
-  'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+  'Janeiro', 'Fevereiro', 'Março', 'Abril',
+  'Maio', 'Junho', 'Julho', 'Agosto',
+  'Setembro', 'Outubro', 'Novembro', 'Dezembro'
 ];
 
-document.querySelector('#gerar-PDF').addEventListener('click', () => {
+document.querySelector('#generatePDF').addEventListener('click', () => {
+  // Faça uma requisição para o servidor e obtenha os dados da tabela
   fetch('assets/php/action_php/detail.php?get_reports=true')
-  .then(response => response.json())
-  .then(data => {
-    const docDefinition = {
-      context: [
-        {text: 'Relatório de Lançamentos', style: 'header'},
-        {text: new Date().toLocaleDateString(), style: 'subheader'},
-        '\n\n',
-        {
-          table: {
-            headerRows: 1,
-            widths: ['*','*','*','*'],
-            body: [
-              [
-                'Mês/ Ano',
-                'Lucro',
-                'Despesas',
-                'Balanço'
-              ],
-              ...data.map(rowData => {
-                const monthName = months[rowData.month - 1];
-                return[
-                  `${monthName}/ ${rowData.year}`,
-                  rowData.income ? `R$ ${rowData.expenses.replace(',', '.').replace('.', ',')}` : '-',
-                  rowData.expenses ? `R$ ${rowData.expenses.replace(',', '.').replace('.', ',')}` : '-',
-                  `R$ ${rowData.profit.replace(',', '.').replace('.', ',')}`
-                ]
-              })
-            ]
+    .then(response => response.json())
+    .then(data => {
+      // Crie um novo documento pdfmake
+      const docDefinition = {
+        content: [
+          { text: 'Relatório de Lançamentos', style: 'header' },
+          { text: new Date().toLocaleDateString(), style: 'subheader' },
+          '\n\n',
+          {
+            table: {
+              headerRows: 1,
+              widths: ['*', '*', '*', '*'],
+              body: [
+                [
+                  'Mês/Ano',
+                  'Lucro',
+                  'Despesas',
+                  'Balanço'
+                ],
+                ...data.map(rowData => {
+                  const monthName = months[rowData.month - 1]; // Obtenha o nome do mês
+                  return [
+                    `${monthName}/${rowData.year}`,
+                    rowData.income ? `R$ ${rowData.income.replace(',', '.').replace('.', ',')}` : '-',
+                    rowData.expenses ? `R$ ${rowData.expenses.replace(',', '.').replace('.', ',')}` : '-',
+                    `R$ ${rowData.profit.replace(',', '.').replace('.', ',')}`
+                  ]
+                })
+              ]
+            }
+          }
+        ],
+        styles: {
+          header: {
+            fontSize: 18,
+            bold: true,
+            alignment: 'center'
+          },
+          subheader: {
+            fontSize: 14,
+            bold: true,
+            alignment: 'center'
           }
         }
-      ],
-      styles: {
-        header: {
-          fontSize: 18,
-          bold: true,
-          alignment: 'center'
-        },
-        subheader:{
-          fontSize: 14,
-          bold: true,
-          alignment: 'center'
-        }
-      }
-    };
+      };
 
-    pdfMake.createPdf(docDefinition).download('Relatório de Lançamentos.pdf');
+      // Gere o PDF e faça o download
+      pdfMake.createPdf(docDefinition).download('Relatório de Lançamentos.pdf');
 
-    pdfMake.createPdf(docDefinition).getBlob(blob => {
-      const pdfUrl = URL.createObjectURL(blob);
-      window.open(pdfUrl);
+      // Abra o PDF em uma nova aba
+      pdfMake.createPdf(docDefinition).getBlob(blob => {
+        const pdfUrl = URL.createObjectURL(blob);
+        window.open(pdfUrl);
+      });
     });
-  });
 });
 
-function details(){
+
+function detail() {
   const detailButton = document.querySelector('.detail');
-  const modalDetail = document.querySelector('#modal-detail');
-  const modalContentDetail = document.querySelector ("#content-modal-detail");
+  const modaldetail = document.querySelector('#modal-detail');
+  const modalContentDetail = document.querySelector("#content-modal-detail");
 
-  const months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+  // Array com os nomes dos meses
+  const meses = [
+    "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+    "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+  ];
 
-  const createTableHTML = (data) => {
-    let html = '<table><thead><tr><th>Data Lançamento</th><th>Lucro</th><th>Despesas</th><th>Balanço</th></tr></thead><tbody>';
+  // Função para criar a tabela HTML com os dados
+  const createTabelaHTML = (data) => {
+    let html = '<table><thead><tr><th>Data lançam.</th><th>Lucro</th><th>Despesas</th><th>Balanço</th></tr></thead><tbody>';
 
-    data.forEach(rowData =>{
-      const month = months[parseInt(rowData.month) -1];
+    data.forEach(rowData => {
+      const month = meses[parseInt(rowData.month) - 1]; // Obtem o nome do mês correspondente
       const row = `
         <tr>
           <td>${month}/${rowData.year}</td>
@@ -403,20 +458,24 @@ function details(){
     return html;
   };
 
-  detailButton.addEventListener("click", () =>{
-    modalDetail.style.display = 'block';
+  detailButton.addEventListener("click", () => {
+    modaldetail.style.display = 'block';
 
+    // Requisição para obter os dados da tabela
     fetch('assets/php/action_php/detail.php?get_reports=true')
-    .then(response => response.json())
-    .then(data =>{
-      const tableHTML = createTableHTML(data);
-      modalContentDetail.innerHTML = tableHTML;
-    })
-    .catch(error =>{
-      console.error(error);
-      modalContentDetail.innerHTML = '<p>Não foi possível obter as informções referente a esse mês!</p>';
-    });
+      .then(response => response.json())
+      .then(data => {
+        // Cria a tabela HTML com os dados obtidos
+        const tableHTML = createTabelaHTML(data);
+        // Adiciona a tabela à div
+        modalContentDetail.innerHTML = tableHTML;
+      })
+      .catch(error => {
+        // Trata o erro na requisição
+        console.error(error);
+        modalContentDetail.innerHTML = '<p>Não foi possível obter os dados da tabela.</p>';
+      });
   });
 }
 
-details();
+detail();

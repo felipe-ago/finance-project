@@ -10,11 +10,11 @@ $data    = json_decode(file_get_contents('php://input'), true);
 $releaseId = $_POST['release_id'];
 $date      = $_POST['date-update'];
 $type      = $_POST['select-update'];
-$subtype   = $_POST['select-sub-update'];
+$subtype   = $_POST['subtype-update'];
 $desc      = $_POST['desc-update'];
-$long_desc = $_POST['desc-detalhada-update'];
+$long_desc = $_POST['desc-long-update'];
 
-$valor = str_replace('.', '', $_POST['valor-update']); // remove todos os pontos
+$valor = str_replace('.', '', $_POST['value-update']); // remove todos os pontos
 $valor = str_replace(',', '.', $valor); // substitui a vírgula pelo ponto
 $valor = floatval($valor); // converte para número decimal
 

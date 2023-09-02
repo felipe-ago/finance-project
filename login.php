@@ -40,5 +40,9 @@
             <h3><a href="signup.php">Faça seu cadastro</a></h3>
         </footer>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="assets/js/loginValidation.js"></script>
+    
 </body>
 </html>
