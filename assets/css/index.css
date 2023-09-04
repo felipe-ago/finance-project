@@ -206,6 +206,10 @@ nav{
     left: 10px;
 }
 
+.table-info td::first-letter {
+    text-transform: uppercase;
+}
+
 .custom-table{
     width: 90%;
     padding: 5px;
@@ -400,8 +404,14 @@ nav{
     border-radius: 4px;
     font-size: 16px;
     font-weight: bold;
-    background-color: rgb(248, 30, 30);
+    background-color: rgb(252, 213, 53);
     cursor: pointer;
+}
+
+#generatePDF:hover{
+    box-shadow: rgba(0, 0, 0, .15) 0 3px 9px 0;
+    transform: translateY(-2px);
+    background-color: rgb(226, 190, 47);
 }
 
 .btn-cancel{
@@ -454,11 +464,9 @@ nav{
 
 #content-modal-detail{
     width: 100%;
-}
-
-#content-modal-detail {
     max-height: 500px; 
     overflow: auto; 
+    background-color: #f2f2f2;
 }
 
 #content-modal-detail table {
@@ -720,13 +728,13 @@ label{
 }
 
 #button-ok{
-    background-color: #13aa52;
+    background-color: rgb(252, 213, 53);
 }
 
 #button-ok:hover{
     box-shadow: rgba(0, 0, 0, .15) 0 3px 9px 0;
     transform: translateY(-2px);
-    background-color: #199b4f;
+    background-color: rgb(226, 190, 47);
 }
 
 #button-close:hover{
@@ -829,6 +837,10 @@ label{
     height: 100%;
 }
 
+.modal-detail h2{
+    color: #E6E6E6;
+}
+
 .modal-detail-body{
     display: flex;
     justify-content: space-between;
@@ -843,11 +855,6 @@ label{
     border-radius: 10px;
     width: 100%;
     max-width: 800px;
-}
-
-.grafico{
-    width: 600px;
-    height: 300px;
 }
 
 .cards-details{
@@ -880,10 +887,10 @@ label{
 }
 
 .close-modal-detail{
-    font-size: 24px;
+    font-size: 16px;
     font-weight: bold;
-    color: #aaa;
     cursor: pointer;
+    margin-top: 10px;
 }
 
 .btn-detail{
@@ -907,8 +914,12 @@ label{
 
 .close-modal-detail:hover,
 .close-modal-detail:focus{
+    background-color: #F3F4F6;
     text-decoration: none;
+    transition-duration: 0.1s;
     cursor: pointer;
+    background-color: #FAFBFC;
+    transform: translateY(-2px);
 }
 
 .modal-detail-footer{

@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if (password_verify($password, $row['password'])){
                 $response['status']     = 'success';
-                $_SESSION['usuario']    = $row['user_name']; 
+                $_SESSION['usuario']    = $row['username']; 
                 $_SESSION['id_usuario'] = $row['id']; // adiciona o ID do usuário à variável de sessão
                 $response['redirect']   = '/index.php'; // adiciona a propriedade 'redirect' com a URL do index.php
 

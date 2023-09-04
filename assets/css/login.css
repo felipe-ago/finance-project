@@ -75,6 +75,36 @@ header h2{
     position: relative;
 }
 
+.form-control.success input {
+    border: 3px solid #4ECA64;
+}
+
+.form-control.error input {
+    border: 3px solid #DB5A5A;
+}
+
+.form-control.error i.img-error {
+    visibility: visible;
+}
+
+.form-control.success i.img-success {
+    visibility: visible;
+}
+
+.form-control.error small {
+    color: #DB5A5A;
+    visibility: visible;
+
+}
+
+.form-control i {
+    position: absolute;
+    top: 45px;
+    right: 10px;
+    visibility: hidden;
+
+}
+
 .sucesso input{
     border: 2px solid rgb(38, 150, 56);
 }

@@ -25,11 +25,6 @@ include_once('assets/php/includes_php/validate_session.php');
                     <h1>FLUXO GRANA</h1>
                 </a>
             </div>
-            <div>
-                <a href="login.php" style="color:white;">Tela de Login</a>
-                <span style="color:white">|</span>
-                <a href="signup.php" style="color:white;">Tela de Cadastro</a>
-            </div>
             <div class="links">
                 <div class="nav-item">
                     <a href="#">
@@ -178,6 +173,10 @@ include_once('assets/php/includes_php/validate_session.php');
             </div>
         </div>
 
+        <button class="btn-more detail" id="btn-detail">
+                        Relatório
+        </button>
+
         <div class="custom-table" style="overflow-x:auto;">
             <table class="table-reg">
                 <thead>
@@ -194,9 +193,6 @@ include_once('assets/php/includes_php/validate_session.php');
                     <?php 
                         include_once('assets/php/crud_php/read.php');
                     ?>
-                    <button class="btn-more detail" id="btn-detail">
-                        Relatório
-                    </button>
                 </tbody>
 
                 <div class="modal-reading modal-icones" id="modal-read">
@@ -304,12 +300,15 @@ include_once('assets/php/includes_php/validate_session.php');
                     <div class="modal-content-detail">
                         <div class="modal-header-table">
                             <h2>Relatório</h2>
-                            <span class="close-modal-detail">&times;</span>
                         </div>
+
+                        <p class="space"></p>
 
                         <div class="modal-body-detail">
                             <div id="content-modal-detail"></div>
                         </div>
+
+                        <p class="space"></p>
 
                         <div class="modal-footer-detail">
                             <button class="btn-cancel close-modal-detail">Fechar</button>
@@ -320,49 +319,6 @@ include_once('assets/php/includes_php/validate_session.php');
 
             </table>
         </div>
-        
-        <!--
-        <div class="modal-detail">
-            <div class="modal-content-detail">
-                <div class="header-modal-detail">
-                    <h2>Detalhamento dos Lançamentos</h2>
-                    <span class="close-modal-detail">&times;</span>
-                </div>
-                <div class="modal-detail-body">
-                    <div class="grafico">
-                        <canvas id="detailing"></canvas>
-                    </div>
-                    <div class="resume-details">
-                        <div class="details-header">Total</div>
-                        <div class="cards-details">
-                            <p class="header-cards-details">Despesas</p>
-                            <div class="resume-cards-details">
-                                <span>R$</span>
-                                <p class="expense-details">0,00</p>
-                            </div>
-                        </div>
-                        <div class="cards-details">
-                            <p class="header-cards-details">Lucro</p>
-                            <div class="resume-cards-details">
-                                <span>R$</span>
-                                <p class="profit-details">0,00</p>
-                            </div>
-                        </div>
-                        <div class="cards-details">
-                            <p class="header-cards-details">Balanço</p>
-                            <div class="resume-cards-details">
-                                <span>R$</span>
-                                <p class="balance-details">0,00</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-detail-footer">
-                    <button class="close-modal-detail btn-detail">FECHAR</button>
-                </div>
-            </div>
-        </div>
-        -->
     </section>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

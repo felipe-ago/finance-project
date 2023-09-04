@@ -9,9 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/login.css">
     <title>Login</title>
-    <div>
-        <a href="index.php" style="color:white;">Tela de Home</a>
-    </div>
 </head>
 <body>
         <div class="body">
