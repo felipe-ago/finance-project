@@ -15,6 +15,9 @@ $resultado = mysqli_stmt_get_result($stmt);
 
 // Montar um array com os meses e seus respectivos lançamentos
 $months = array();
+
+$count = 0;
+
 while ($row = mysqli_fetch_assoc($resultado)) {
   $monthYear = explode('-', $row['monthYear']);
   $month = $monthYear[0];
@@ -47,7 +50,6 @@ while ($row = mysqli_fetch_assoc($resultado)) {
   // Calcular o lucro do mês atual
   $profit = $income - $expenses;
 
-  // Adicionar o mês e seus lançamentos ao array de meses
   $months[] = [
     'month' => $month,
     'year' => $year,
@@ -55,15 +57,40 @@ while ($row = mysqli_fetch_assoc($resultado)) {
     'income'   => !empty($income)   ? number_format($income,   2, ',', '.')   : 0,
     'profit'   => !empty($profit)   ? number_format($profit,   2, ',', '.')   : 0,
   ];
+} 
+
+$a = [];
+
+for($i = 0; $i < count($months); $i ++){
+  if($i !== 0){   
+    if($months[$i - 1]['month'] != $months[$i]['month']){
+      // Adicionar o mês e seus lançamentos ao array de meses
+     $a[] = [
+        'month' => $months[$i]['month'],
+        'year' => $months[$i]['year'],
+        'expenses' => $months[$i]['expenses'],
+        'income'   => $months[$i]['income'],
+        'profit'   => $months[$i]['profit'],
+      ];
+    }
+  } else {
+    $a[] = [
+      'month' => $months[$i]['month'],
+        'year' => $months[$i]['year'],
+        'expenses' => $months[$i]['expenses'],
+        'income'   => $months[$i]['income'],
+        'profit'   => $months[$i]['profit'],
+    ];
+  }
 }
 
 // Ordenar os meses em ordem crescente
-usort($months, function($a, $b) {
+usort($a, function($a, $b) {
   return strtotime($a['year'] . '-' . $a['month'] . '-01') - strtotime($b['year'] . '-' . $b['month'] . '-01');
 });
 
 // Retornar o array de meses em formato JSON
-echo json_encode($months);
+echo json_encode($a);
 
 mysqli_close($connect);
 

@@ -469,6 +469,7 @@ function detail() {
         const tableHTML = createTabelaHTML(data);
         // Adiciona a tabela à div
         modalContentDetail.innerHTML = tableHTML;
+        console.log(data);
       })
       .catch(error => {
         // Trata o erro na requisição
