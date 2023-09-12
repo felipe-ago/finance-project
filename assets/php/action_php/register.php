@@ -43,15 +43,15 @@
     }
 
     if (empty($confirmPassword)) {
-        $response['confirm_password_error'] = 'Por favor, confirme sua senha.';
+        $response['confirmPassword_error'] = 'Por favor, confirme sua senha.';
     } elseif ($password !== $confirmPassword) {
-        $response['confirm_password_error'] = 'As senhas não coincidem.';
+        $response['confirmPassword_error'] = 'As senhas não coincidem.';
     }
 
     // Se não houver erros, adiciona o usuário ao banco de dados
     if (count($response) == 0) {
         $password_hash = password_hash($password, PASSWORD_DEFAULT);
-        $sql = "INSERT INTO users (user_name, email, password) VALUES ('$name', '$email', '$password_hash')";
+        $sql = "INSERT INTO users (username, email, password) VALUES ('$name', '$email', '$password_hash')";
         $resultado = mysqli_query($connect, $sql);
 
         // Verifica se ocorreu algum erro na inserção

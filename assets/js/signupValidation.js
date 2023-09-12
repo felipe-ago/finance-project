@@ -112,7 +112,7 @@ function register() {
   })
   .then(response => response.json())
   .then(data => {
-    if (data === 'success') {
+    if (data.status === 'success') {
       const succesModal = document.querySelector('.modal');
       succesModal.style.visibility = 'visible';
       succesModal.classList.add('animate');
