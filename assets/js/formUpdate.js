@@ -15,6 +15,6 @@ dateInputUpdate.onchange = function () {
   }
 }
 
-$(document).ready(function () {
-  $('#valor, #valor-update').mask('#.##0,00', { reverse: true });
-});
+/*$(document).ready(function () {
+  $('#value, #value-update').mask('#.##0,00', { reverse: true });
+});*/

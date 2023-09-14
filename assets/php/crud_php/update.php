@@ -53,11 +53,11 @@ mysqli_stmt_execute($stmt);
 // Verifica se o update foi bem sucedido
 if (mysqli_affected_rows($connect) > 0) {
     $response['status']  = 'success';
-    $response['message'] = 'Release updated successfully';
+    $response['message'] = 'Registro alterado com sucesso!';
     http_response_code(200); // OK
 } else {
     $response['status'] = 'error';
-    $response['message'] = 'Failed to update release';
+    $response['message'] = 'O registro está exatamente igual, favor alterar a infrmação desejada ou cancelar!';
     http_response_code(500); // Internal Server Error
 }
 

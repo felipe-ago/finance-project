@@ -84,7 +84,7 @@ include_once('assets/php/includes_php/validate_session.php');
 
                             <label for="select">Tipo</label>
                             <div class="select-control">
-                                <select name="select" required id="type">
+                                <select name="select" required>
                                     <option value="" disabled selected>Selecione</option>
                                     <option value="renda">Renda</option>
                                     <option value="despesa">Despesa</option>
@@ -95,7 +95,7 @@ include_once('assets/php/includes_php/validate_session.php');
 
                             <label for="sub-type">Subtipo</label>
                             <div class="select-control">
-                                <select name="select-sub" required id="subtype">
+                                <select name="select-sub" required>
                                     <option value="" disabled selected>Selecione</option>
                                     <option value="previsto">Previsto</option>
                                     <option value="extra">Extra</option>

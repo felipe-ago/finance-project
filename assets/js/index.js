@@ -196,10 +196,8 @@ dateInput.addEventListener('input', function () {
 /* Máscara de Valor */
 
 $(document).ready(function () {
-  $('#value').mask('#.##0,00', { reverse: true });
+  $('#value, #value-update').mask('#.##0,00', { reverse: true });
 });
-
-
 
 function createTransaction(event) {
 
@@ -302,7 +300,7 @@ function addUpdateClick() {
   });
 }
 
-async function retrievePostingData(releaseId) {
+/*async function retrievePostingData(releaseId) {
   try {
     const response = await fetch(`assets/php/action_php/get_release_data.php?id=${releaseId}`);
     const data = await response.json();
@@ -313,6 +311,26 @@ async function retrievePostingData(releaseId) {
     document.querySelector('#desc-update').value = data.description;
     document.querySelector('#long-desc-update').value = data.long_description;
     document.querySelector('#value-update').value = data.launch_value;
+  } catch (error) {
+    console.error(error);
+  }
+}*/
+
+async function retrievePostingData(releaseId) {
+  try {
+    const response = await fetch(`assets/php/action_php/get_release_data.php?id=${releaseId}`);
+    const data = await response.json();
+    const formattedValue = (parseFloat(data.launch_value)).toLocaleString('pt-BR', {
+      minimumFractionDigits: 2
+    });
+    
+    // Preenche os campos do formulário com os valores retornados pela consulta
+    document.querySelector('#dateInput-update').value = data.datetime;
+    document.querySelector('#type').value = data.type;
+    document.querySelector('#subtype').value = data.subtype;
+    document.querySelector('#desc-update').value = data.description;
+    document.querySelector('#long-desc-update').value = data.long_description;
+    document.querySelector('#value-update').value = formattedValue;
   } catch (error) {
     console.error(error);
   }
